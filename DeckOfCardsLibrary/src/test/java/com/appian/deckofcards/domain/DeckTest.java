@@ -22,4 +22,21 @@ public class DeckTest {
 
         assertEquals(expectedDeck, deck.toString());
     }
+
+    @Test
+    public void testDealOneCard() throws DeckEmptyException {
+        Deck deck = new Deck();
+        Card c = deck.dealOneCard();
+
+        assertEquals("Ace of Clubs\n", c.toString());
+    }
+
+    @Test(expected = DeckEmptyException.class)
+    public void testDeal53Cards() throws DeckEmptyException {
+        Deck deck = new Deck();
+
+        for(int i = 1; i <= 53; i++) {
+            deck.dealOneCard();
+        }
+    }
 }
