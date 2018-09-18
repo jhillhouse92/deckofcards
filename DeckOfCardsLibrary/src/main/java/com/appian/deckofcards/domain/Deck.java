@@ -18,6 +18,7 @@ public class Deck {
      */
     private ArrayList<Card> cards = new ArrayList();
 
+
     public Deck() {
         //for each suit and for each value King-Jack, 10-Ace build deck
         for (Suit suit : Suit.values()) {
@@ -48,6 +49,21 @@ public class Deck {
     }
 
     /**
+     * <p>This operates as a Stack popping the last item of the list (last-in first-out).</p>
+     * @return Card which has a Suit and value.
+     * @throws DeckEmptyException once all cards have been dealt.
+     * @see {@link com.appian.deckofcards.domain.Card}
+     * @since 1.0
+     */
+    public Card dealOneCard() throws DeckEmptyException {
+        try {
+            return this.cards.remove(this.cards.size() - 1);
+        } catch (IndexOutOfBoundsException exception) {
+            throw new DeckEmptyException();
+        }
+    }
+
+    /**
      * <p>We override the toString method to print out the deck in a LIFO manner.</p>
      * @return String representation of the Deck of each Card with its Suit and value.
      * @see {@link com.appian.deckofcards.domain.Card}
@@ -61,7 +77,7 @@ public class Deck {
 
         while (deckIterator.hasPrevious()) {
             Card card = deckIterator.previous();
-            sb.append(card.getValue() + " of " + card.getSuit() + "\n");
+            sb.append(card.toString());
         }
 
         return sb.toString();
