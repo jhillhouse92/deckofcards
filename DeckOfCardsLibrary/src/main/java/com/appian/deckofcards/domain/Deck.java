@@ -6,10 +6,8 @@ import java.util.ListIterator;
 import java.util.Random;
 
 /**
- * The Deck is the core class to be used for the foundational component. When the constructor is invoked
- * it builds the deck as a stack for each Suit and through each of the possible values.
- *
- * The methods exposed will be dealOneCard() and shuffle().
+ * The Deck is the core class to be used for the foundational component; when the constructor is invoked,
+ * it builds the deck as a stack for each Suit and through each of the possible values. See {@link #reset()}.
  */
 public class Deck {
 
@@ -26,10 +24,10 @@ public class Deck {
     }
 
     /**
-     * <p>This operates as a Stack popping the last item of the list (last-in first-out).</p>
+     * This operates as a Stack returning the last item of the list (eg, the top card on the deck).
      * @return Card which has a Suit and value.
      * @throws DeckEmptyException once all cards have been dealt.
-     * @see {@link com.appian.deckofcards.domain.Card}
+     * @see com.appian.deckofcards.domain.Card
      * @since 1.0
      */
     public Card dealOneCard() {
@@ -41,9 +39,10 @@ public class Deck {
     }
 
     /**
-     * <p>This resets the deck by rebuilding it.</p>
+     * This builds the deck by looping through all Suits and all possible values Ace-10, Jack - King adding the Cards
+     * to the deck.
      * @return void
-     * @see {@link com.appian.deckofcards.domain.Card}
+     * @see com.appian.deckofcards.domain.Card
      * @since 1.0
      */
     public void reset() {
@@ -79,13 +78,18 @@ public class Deck {
     }
 
     /**
-     * <p>This shuffles the deck using a {@link #riffleShuffle(int) riffle shuffle}. It repeats the operation a
-     * psuedo-random number of times to improve the shuffle effectiveness.</p>
+     * Shuffles the deck using a {@link #riffleShuffle(int) riffle shuffle}; it repeats the operation a
+     * psuedo-random number of times to improve the shuffle effectiveness.
      * @return void
-     * @see {@link #riffleShuffle(int)}
+     * @throws DeckEmptyException
+     * @see #riffleShuffle(int)
      * @since 1.0
      */
     public void shuffle() {
+        if (cards.size() == 0) {
+            throw new DeckEmptyException();
+        }
+
         Random rand = new Random();
 
         //generate random number of times to shuffle 3 - 10 times
@@ -94,8 +98,8 @@ public class Deck {
     }
 
     /**
-     * <p>This is the riffle shuffle. It splits the deck into and builds the deck again taking some from the first
-     * half and some from the second half based on psuedo-random generators.</p>
+     * The riffle shuffle works by splitting the deck into and building the deck again taking some cards from the first
+     * half and some from the second half based on psuedo-random generators.
      * @return void
      * @since 1.0
      */
@@ -150,13 +154,19 @@ public class Deck {
     }
 
     /**
-     * <p>We override the toString method to print out the deck in a LIFO manner.</p>
+     * Prints out the deck in a LIFO manner as if each card of the deck from top to bottom was being flipped
+     * over.
      * @return String representation of the Deck of each Card with its Suit and value.
-     * @see {@link com.appian.deckofcards.domain.Card}
+     * @throws DeckEmptyException
+     * @see com.appian.deckofcards.domain.Card
      * @since 1.0
      */
     @Override
     public String toString() {
+        if (cards.size() == 0) {
+            throw new DeckEmptyException();
+        }
+
         StringBuilder sb = new StringBuilder();
 
         ListIterator<Card> deckIterator = cards.listIterator(cards.size());
