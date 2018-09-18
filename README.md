@@ -1,6 +1,6 @@
 # Deck of Cards
 
-This is a foundation part of an Appian product and has 2 projects:
+This is a foundational part of an Appian product and has 2 projects:
 
 1. Deck of Cards Domain Library
 2. Deck of Cards REST API
