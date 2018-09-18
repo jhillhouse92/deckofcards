@@ -79,11 +79,10 @@ public class Deck {
     }
 
     /**
-     * <p>This shuffles the deck using a {@link #riffleShuffle(int) riffle shuffle} and
-     * {@link #overhandShuffle(int) overhand shuffle}. It repeats the operation a psuedo-random number of times to
-     * improve the shuffle effectiveness.</p>
+     * <p>This shuffles the deck using a {@link #riffleShuffle(int) riffle shuffle}. It repeats the operation a
+     * psuedo-random number of times to improve the shuffle effectiveness.</p>
      * @return void
-     * @see {@link #riffleShuffle(int)}, {@link #overhandShuffle(int)}
+     * @see {@link #riffleShuffle(int)}
      * @since 1.0
      */
     public void shuffle() {
@@ -148,10 +147,6 @@ public class Deck {
 
             cards = shuffledCards;
         }
-    }
-
-    public void overhandShuffle(int numberOfIterations) {
-
     }
 
     /**
