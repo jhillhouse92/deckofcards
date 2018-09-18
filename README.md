@@ -14,6 +14,10 @@ time until the end of a 52-deck. This README contains instructions for how to cl
 Spring Boot using Gradle, any pre-requisites and notes for how to access the documentation to integrate with this
 component.
 
+To get started, clone the repo:
+
+`git clone https://github.com/jhillhouse92/deckofcards.git`
+
 ## Prerequisites
 
 - [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) or later
@@ -24,6 +28,7 @@ Eclipse can be added.
 ## Running the tests
 
 `gradle test` runs the test. It creates the test results artifacts in `{projectFolder}/build/reports/tests/test/`.
+
 `gradle test jacocoTestReport` runs the test coverage report. It creates the code coverage report in
 `{projectFolder}/build/reports/jacoco/test/html/`.
 
