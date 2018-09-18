@@ -28,3 +28,9 @@ subprojects {
         options.addStringOption('charSet', 'UTF-8')
     }
 }
+
+project(':DeckOfCardsAPI') {
+    dependencies {
+        compile project(':DeckOfCardsLibrary')
+    }
+}

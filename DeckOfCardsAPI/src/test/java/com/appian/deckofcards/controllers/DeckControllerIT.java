@@ -1,10 +1,14 @@
 package com.appian.deckofcards.controllers;
 
+import com.appian.deckofcards.domain.Card;
+import com.appian.deckofcards.domain.Suit;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+
+import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -32,9 +36,35 @@ public class DeckControllerIT {
     }
 
     @Test
-    public void deckIndex() throws Exception {
-        ResponseEntity<String> response = template.getForEntity(base.toString() + "api/v1/deck",
+    public void testDealOneCard() throws Exception {
+        template.getForEntity(base.toString() + "api/v1/deck/reset", String.class);
+
+        ResponseEntity<String> response = template.getForEntity(base.toString() + "api/v1/deck/dealOneCard",
                 String.class);
-        assertThat(response.getBody(), equalTo("The Deck of Cards REST API is coming soon!"));
+
+        String expected = "{suit:Clubs,value:Ace}";
+        JSONAssert.assertEquals(expected, response.getBody(), false);
+    }
+
+    @Test
+    public void testReset() throws Exception {
+        template.getForEntity(base.toString() + "api/v1/deck/reset", String.class);
+
+        ResponseEntity<String> dealResponse = template.getForEntity(base.toString() + "api/v1/deck/dealOneCard",
+                String.class);
+
+        String expected = "{suit:Clubs,value:Ace}";
+        JSONAssert.assertEquals(expected, dealResponse.getBody(), false);
+    }
+
+    @Test
+    public void testShuffle() throws Exception {
+        template.getForEntity(base.toString() + "api/v1/deck/shuffle", String.class);
+
+        ResponseEntity<String> dealResponse = template.getForEntity(base.toString() + "api/v1/deck/dealOneCard",
+                String.class);
+
+        String nonExpectedResponse = "{suit:Clubs,value:Ace}";
+        JSONAssert.assertNotEquals(nonExpectedResponse, dealResponse.getBody(), false);
     }
 }
