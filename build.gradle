@@ -2,6 +2,11 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
 
+    javadoc {
+        source = sourceSets.main.allJava
+        classpath = configurations.compile
+    }
+
     repositories {
        mavenCentral()
     }
@@ -14,5 +19,11 @@ subprojects {
 
     jar {
         manifest.attributes provider: 'gradle'
+    }
+
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
+        options.addStringOption('charSet', 'UTF-8')
     }
 }
