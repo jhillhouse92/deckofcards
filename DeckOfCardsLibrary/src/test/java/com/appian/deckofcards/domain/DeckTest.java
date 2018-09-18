@@ -3,6 +3,7 @@ package com.appian.deckofcards.domain;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class DeckTest {
 
@@ -37,6 +38,33 @@ public class DeckTest {
 
         for(int i = 1; i <= 53; i++) {
             deck.dealOneCard();
+        }
+    }
+
+    @Test
+    public void testResetDeck() throws DeckEmptyException{
+        Deck deck = new Deck();
+        deck.dealOneCard();
+
+        deck.reset();
+        Card c = deck.dealOneCard();
+        assertEquals("Ace of Clubs\n", c.toString());
+    }
+
+    @Test()
+    public void testResetDeckAfterDeckIsEmpty() {
+        Deck deck = new Deck();
+
+        try {
+            for(int i = 1; i <= 53; i++) {
+                if (i == 52) {
+                    deck.reset();
+                }
+
+                deck.dealOneCard();
+            }
+        } catch (DeckEmptyException ex) {
+            fail("This should not throw an exception as reset is called.");
         }
     }
 }
