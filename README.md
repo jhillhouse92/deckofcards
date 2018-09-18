@@ -22,7 +22,7 @@ To get started, clone the repo:
 
 - [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) or later
 - [Gradle 4+](http://www.gradle.org/downloads)
-- [IntelliJ IDEA - Optional](https://spring.io/guides/gs/intellij-idea/) - The Gradle plugin provided is idea but can
+- [IntelliJ IDEA - Optional](https://spring.io/guides/gs/intellij-idea/) - The Gradle plugin provided is idea but
 Eclipse can be added.
 
 ## Running the tests
