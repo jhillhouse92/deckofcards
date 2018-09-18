@@ -27,6 +27,20 @@ Eclipse can be added.
 `gradle test jacocoTestReport` runs the test coverage report. It creates the code coverage report in
 `{projectFolder}/build/reports/jacoco/test/html/`.
 
+## Accessing the Spring Boot REST API
+
+The REST API is built with Spring Boot. To build and start the Spring Boot server use:
+
+`gradle build && java -jar DeckOfCardsAPI/build/libs/deck-of-cards-api-0.1.0.jar`
+
+The endpoints can then be accessed via curl:
+
+```
+curl localhost:8080/api/v1/deck/dealOneCard
+curl localhost:8080/api/v1/deck/shuffle
+curl localhost:8080/api/v1/deck/reset
+```
+
 ## Documentation
 
 The documentation included is the CRC model, Class Diagram, and Activity Diagram. This is in the Documentation folder.
